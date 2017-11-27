@@ -20,6 +20,8 @@ function clear(element) {
 }
 
 var input = document.querySelector('input');
+var keyboard = document.querySelectorAll('.keyboard button');
+
 var ESC   = 27;
 var ENTER = 13;
 var PLUS  = 187;
@@ -31,8 +33,9 @@ input.focus();
 input.select();
 
 
-var leftValue;
-var rightValue;
+function clickHandles(e) {
+  input.value = input.value + this.dataset.value;
+}
 
 input.addEventListener('keydown', function(e) {
   if (this.value === 0) {
@@ -51,6 +54,6 @@ input.addEventListener('keyup', function(e) {
   }
 });
 
-function example() {
-  console.log(this);
-}
+keyboard.forEach(button => {
+  button.addEventListener('click', clickHandles);
+});
