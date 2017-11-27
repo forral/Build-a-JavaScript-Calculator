@@ -20,18 +20,37 @@ function clear(element) {
 }
 
 var input = document.querySelector('input');
+var ESC   = 27;
+var ENTER = 13;
+var PLUS  = 187;
+var MINUS = 189;
+
+// Init
 input.value = 0;
 input.focus();
 input.select();
 
-input.addEventListener('keydown', function() {
+
+var leftValue;
+var rightValue;
+
+input.addEventListener('keydown', function(e) {
   if (this.value === 0) {
     this.valus = '';
   }
 });
 
 input.addEventListener('keyup', function(e) {
-  if (this.value === '' || e.keyCode === 27) {
+  if (this.value === '' || e.keyCode === ESC) {
     clear(this);
   }
+
+  if (e.keyCode === PLUS) {
+    leftValue = parseInt(this.value.replace(/\D/, ''));
+    console.log(leftValue);
+  }
 });
+
+function example() {
+  console.log(this);
+}
