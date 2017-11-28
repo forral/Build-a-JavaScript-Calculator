@@ -6,9 +6,9 @@ html {
   https://css-tricks.com/overriding-the-default-text-selection-color-with-css/ 
   Overriding The Default Text Selection Color With CSS
 */
-::selection {
+/* ::selection {
   background: none;
-}
+} */
 
 #app {
   width: 250px;
