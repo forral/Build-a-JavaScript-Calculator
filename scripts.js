@@ -12,14 +12,11 @@ function clickHandles(e) {
   } else if (this.dataset.value === '=') {
     operation.push(input.value);
     input.value = (eval(operation.join(' ')));
-    console.log(operation);
+    operation = [];
     
-
   } else {
     input.value = input.value + this.dataset.value;
   }
-
-  
 }
 
 keyboard.forEach(button => {

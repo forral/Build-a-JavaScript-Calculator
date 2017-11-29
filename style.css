@@ -23,6 +23,7 @@ html {
   https://stackoverflow.com/questions/23515754/how-to-remove-the-blinking-cursor-from-an-input-type-textbox
 */
 input {
+  width: 197px;
   height: 40px;
   font-size: 18px;
   text-align: right;
@@ -40,6 +41,17 @@ button {
   margin: 5px;
 }
 
-.zero {
+.zero-btn {
   width: 90px;
-} 
+}
+
+.equal-btn {
+  height: 90px;
+  position: absolute;
+  margin-left: -43px;
+  margin-top: -45px;
+}
+
+.invisible {
+  visibility: hidden;
+}
