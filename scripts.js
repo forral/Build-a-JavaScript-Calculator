@@ -26,6 +26,10 @@ function clickHandles(e) {
     input.value = (eval(operation.join(' ')));
     operation = [];
   
+  // If the input selected value it's 0 and the button pressed it's '.' the append it to the current value.
+  } else if (window.getSelection().toString() === '0' && this.dataset.value === '.') {
+    input.value = input.value + this.dataset.value;
+
   // If the current select text in the input it's a 0, then clean it and insert the current pushed button value.
   } else if (window.getSelection().toString() === '0') {
     input.value = this.dataset.value;
