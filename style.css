@@ -31,6 +31,18 @@ input {
   text-shadow: 0 0 0 gray;
 }
 
+.screen {
+  margin: 0 auto 0 auto;
+  border: 1px solid lightgray;
+  width: 197px;
+  height: 40px;
+  font-size: 20px;
+  text-align: right;
+  color: lightgray;
+  line-height: 40px;
+  padding-right: 5px;
+}
+
 input:focus {
   outline: none;
 }
