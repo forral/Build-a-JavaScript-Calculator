@@ -2,33 +2,12 @@ html {
   background: lightcyan;
 }
 
-/* 
-  https://css-tricks.com/overriding-the-default-text-selection-color-with-css/ 
-  Overriding The Default Text Selection Color With CSS
-*/
-/* ::selection {
-  background: none;
-} */
-
 #app {
   width: 250px;
   background: white;
   margin: 50px auto 0 auto;
   text-align: center;
   padding: 30px 0;
-}
-
-/* 
-  How to remove the Blinking Cursor from an input type textbox: ´input {color: transparent}´
-  https://stackoverflow.com/questions/23515754/how-to-remove-the-blinking-cursor-from-an-input-type-textbox
-*/
-input {
-  width: 197px;
-  height: 40px;
-  font-size: 18px;
-  text-align: right;
-  color: transparent;
-  text-shadow: 0 0 0 gray;
 }
 
 .screen {
