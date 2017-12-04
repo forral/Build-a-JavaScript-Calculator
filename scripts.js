@@ -5,15 +5,19 @@ var keyboard = document.querySelectorAll('.keyboard button');
 screen.textContent = '0';
 var operation = [];
 
-var currentValue;
-var currentOperation;
+var currentValue = '';
+var currentOperation = '';
 
 function clickHandles(e) {
 
   if (this.dataset.type === 'mathOperation') {
-    console.log('math operation');
+    currentValue = screen.textContent;
+    currentOperation = this.dataset.value;
   }
 
+  // if (currentValue !== undefined && this.data.type === 'number') {
+
+  // }
 
   // // If the button pushed is AC, then put the 0 value into the .screen and clean the operation array.
   // // **TODO**: turn into a function.
