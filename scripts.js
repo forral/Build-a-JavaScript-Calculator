@@ -10,14 +10,48 @@ var currentOperation = '';
 
 function clickHandles(e) {
 
-  if (this.dataset.type === 'mathOperation') {
-    currentValue = screen.textContent;
-    currentOperation = this.dataset.value;
+  // ------> NUMBER
+  if (this.dataset.type === 'number') {
+    if (currentOperation) {
+      operation.push(currentOperation);
+      currentOperation = '';
+    }
+    screen.textContent += this.dataset.value;
   }
 
-  // if (currentValue !== undefined && this.data.type === 'number') {
+  // ------> MATH OPERATION
+  if (this.dataset.type === 'mathOperation') {
+    if (currentOperation) {
+      currentOperation = this.dataset.value;
 
-  // }
+    } else {
+      currentValue = screen.textContent;
+      currentOperation = this.dataset.value;
+
+      operation.push(currentValue);
+      currentValue = '';
+    }
+  }
+
+  // ------> RESULT
+  if (this.dataset.value === '=') {
+    currentValue = screen.textContent;
+
+    operation.push(currentValue);
+    currentValue = '';
+    currentOperation = '';
+
+    console.log(eval(operation.join(' ')));
+    
+  }
+
+  // ------> AC
+  if (this.dataset.value === 'AC') {
+    screen.textContent = '0';
+    operation = [];
+    currentValue = '';
+    currentOperation = '';
+  }
 
   // // If the button pushed is AC, then put the 0 value into the .screen and clean the operation array.
   // // **TODO**: turn into a function.
