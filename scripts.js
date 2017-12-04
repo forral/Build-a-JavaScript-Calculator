@@ -15,8 +15,21 @@ function clickHandles(e) {
     if (currentOperation) {
       operation.push(currentOperation);
       currentOperation = '';
+      screen.textContent = '';
     }
-    screen.textContent += this.dataset.value;
+
+    if (screen.textContent === '0') {
+      if (this.dataset.value === '.') {
+        // If the screen value it's 0 and the button pressed it's '.' the append it to the current value.
+        screen.textContent += this.dataset.value;
+      } else {
+      // If the current value in the ´.screen´ it's a 0, then clean it and insert the current pushed button value.
+      screen.textContent = this.dataset.value;
+      }
+    } else {
+      // show the clicked button value into the .screen.
+      screen.textContent += this.dataset.value;
+    }
   }
 
   // ------> MATH OPERATION
@@ -34,15 +47,18 @@ function clickHandles(e) {
   }
 
   // ------> RESULT
-  if (this.dataset.value === '=') {
+  if (this.dataset.value === '=') {    
     currentValue = screen.textContent;
 
     operation.push(currentValue);
     currentValue = '';
     currentOperation = '';
 
-    console.log(eval(operation.join(' ')));
-    
+    console.log(operation);
+
+    screen.textContent = (eval(operation.join(' ')));
+    currentValue = screen.textContent;
+    operation = [];
   }
 
   // ------> AC
