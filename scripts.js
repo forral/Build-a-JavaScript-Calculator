@@ -63,7 +63,14 @@ function clickHandles(e) {
     currentValue = '';
     currentOperation = '';
 
-    screen.textContent = (eval(operation.join(' ')));
+    var result = (eval(operation.join(' ')));
+
+    // limit the characters on screen.
+    if (result.length > 18) {
+      result = result.toExponential();
+    }
+
+    screen.textContent = result;
     currentValue = screen.textContent;
     operation = [];
   }
@@ -90,9 +97,7 @@ function clickHandles(e) {
     if (operation.length > 0 && currentOperation !== '') {
       currentOperation = '';
     }
-    
   }
-
 }
 
 keyboard.forEach(button => {
