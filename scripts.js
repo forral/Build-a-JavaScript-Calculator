@@ -97,6 +97,11 @@ function clickHandles(e) {
     if (operation.length > 0 && currentOperation !== '') {
       currentOperation = '';
     }
+
+    if (currentValue !== '' && screen.textContent !== '0') {
+      currentValue = '';
+      screen.textContent = '0';
+    }
   }
 }
 
