@@ -63,8 +63,6 @@ function clickHandles(e) {
     currentValue = '';
     currentOperation = '';
 
-    console.log(operation);
-
     screen.textContent = (eval(operation.join(' ')));
     currentValue = screen.textContent;
     operation = [];
@@ -76,6 +74,23 @@ function clickHandles(e) {
     operation = [];
     currentValue = '';
     currentOperation = '';
+  }
+
+  // ------> CE
+  if (this.dataset.value === 'CE') {
+
+    if (currentValue === '' && currentOperation === '') {
+      if (screen.textContent === '0') {
+        operation.pop();
+      } else {
+        screen.textContent = '0';
+      }
+    }
+
+    if (operation.length > 0 && currentOperation !== '') {
+      currentOperation = '';
+    }
+    
   }
 
 }
