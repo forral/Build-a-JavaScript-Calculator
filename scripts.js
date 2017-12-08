@@ -86,10 +86,7 @@ function clickHandles(e) {
 
   // ------> AC
   if (this.dataset.value === 'AC') {
-    screen.textContent = '0';
-    operation = [];
-    currentValue = '';
-    currentOperation = '';
+    allClear();
   }
 
   // ------> CE
@@ -117,3 +114,10 @@ function clickHandles(e) {
 keyboard.forEach(button => {
   button.addEventListener('click', clickHandles);
 });
+
+function allClear() {
+  screen.textContent = '0';
+  operation = [];
+  currentValue = '';
+  currentOperation = '';
+}
