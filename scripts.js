@@ -7,6 +7,7 @@ var operation = [];
 
 var currentValue = '';
 var currentOperation = '';
+// var lastOp = '';
 
 function clickHandles(e) {
 
@@ -35,6 +36,10 @@ function clickHandles(e) {
         // If the screen don't have any value and the button click is a point, then put an 0 before it.
         screen.textContent = '0' + this.dataset.value;
       }
+    } else if (screen.textContent === currentValue) {
+      // If the screen has the result of an operation and the next button clickes it´s a number,
+      // then clean the screen and had the value of the clicked button.
+      screen.textContent = this.dataset.value;
     } else {
       // show the clicked button value into the .screen.
       screen.textContent += this.dataset.value;
@@ -72,6 +77,10 @@ function clickHandles(e) {
 
     screen.textContent = result;
     currentValue = screen.textContent;
+
+    // lastOp = operation[operation.length - 2];
+    // lastOp = lastOp + operation[operation.length - 1];
+
     operation = [];
   }
 
