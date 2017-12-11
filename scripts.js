@@ -7,7 +7,7 @@ var operation = [];
 
 var currentValue = '';
 var currentOperation = '';
-// var lastOp = '';
+var lastOp = '';
 
 function clickHandles(e) {
 
@@ -61,16 +61,24 @@ function clickHandles(e) {
   }
 
   // ------> RESULT
-  if (this.dataset.value === '=') {    
+  if (this.dataset.value === '=') {
+
     currentValue = screen.textContent;
 
-    operation.push(currentValue);
+    if (operation.length === 0 && lastOp) {
+      operation.push(currentValue);
+      operation.push(lastOp);  
+    } else {
+      operation.push(currentValue);
+    }
+
     currentValue = '';
     currentOperation = '';
 
     var result = (eval(operation.join(' ')));
 
     // limit the characters on screen.
+    // TODO, numbers don't have length property, fix this.
     if (result.length > 18) {
       result = result.toExponential();
     }
@@ -78,8 +86,13 @@ function clickHandles(e) {
     screen.textContent = result;
     currentValue = screen.textContent;
 
-    // lastOp = operation[operation.length - 2];
-    // lastOp = lastOp + operation[operation.length - 1];
+    // change the dinamic of the lastOp, it must be an array and then use .concat();
+    if (operation[operation.length - 2]) {
+      lastOp = operation[operation.length - 2];
+      lastOp = lastOp + operation[operation.length - 1];
+    } else {
+      lastOp = '';
+    }
 
     operation = [];
   }
@@ -120,4 +133,5 @@ function allClear() {
   operation = [];
   currentValue = '';
   currentOperation = '';
+  lastOp = '';
 }
