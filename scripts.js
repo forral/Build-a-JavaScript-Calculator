@@ -4,7 +4,6 @@ var keyboard = document.querySelectorAll('.keyboard button');
 // Init.
 screen.textContent = '0';
 var operation = [];
-
 var currentValue = '';
 var currentOperation = '';
 var lastOp = [];
@@ -77,16 +76,14 @@ function clickHandles(e) {
 
     var result = (eval(operation.join(' ')));
 
-    // limit the characters on screen.
-    // TODO, numbers don't have length property, fix this.
-    if (result.length > 18) {
+    // limit the result characters on screen.
+    if (result.toString().length > 18) {
       result = result.toExponential();
     }
 
     screen.textContent = result;
     currentValue = screen.textContent;
 
-    // change the dinamic of the lastOp, it must be an array and then use .concat();
     if (operation[operation.length - 2]) {
       lastOp = [];
       lastOp.push(operation[operation.length - 2]);
