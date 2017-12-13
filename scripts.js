@@ -7,7 +7,7 @@ var operation = [];
 
 var currentValue = '';
 var currentOperation = '';
-var lastOp = '';
+var lastOp = [];
 
 function clickHandles(e) {
 
@@ -67,7 +67,7 @@ function clickHandles(e) {
 
     if (operation.length === 0 && lastOp) {
       operation.push(currentValue);
-      operation.push(lastOp);  
+      operation.concat(lastOp);
     } else {
       operation.push(currentValue);
     }
@@ -88,10 +88,10 @@ function clickHandles(e) {
 
     // change the dinamic of the lastOp, it must be an array and then use .concat();
     if (operation[operation.length - 2]) {
-      lastOp = operation[operation.length - 2];
-      lastOp = lastOp + operation[operation.length - 1];
+      lastOp.push(operation[operation.length - 2]);
+      lastOp.push(lastOp + operation[operation.length - 1]);
     } else {
-      lastOp = '';
+      lastOp = [];
     }
 
     operation = [];
@@ -133,5 +133,5 @@ function allClear() {
   operation = [];
   currentValue = '';
   currentOperation = '';
-  lastOp = '';
+  lastOp = [];
 }
