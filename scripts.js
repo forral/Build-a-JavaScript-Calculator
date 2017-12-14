@@ -52,7 +52,9 @@ function clickHandles(e) {
   // ------> MATH OPERATION
   if (this.dataset.type === 'mathOperation') {
     if (currentOperation) {
+      cleanHighlightButton();
       currentOperation = this.dataset.value;
+      this.classList.add('selected');
 
     } else {
       currentValue = screen.textContent;
@@ -136,4 +138,8 @@ function allClear() {
   currentValue = '';
   currentOperation = '';
   lastOp = [];
+}
+
+function cleanHighlightButton() {
+  keyboard.forEach((button) => button.classList.remove('selected'));
 }

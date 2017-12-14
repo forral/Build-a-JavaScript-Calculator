@@ -46,3 +46,7 @@ button {
 .invisible {
   visibility: hidden;
 }
+
+.selected {
+  border: 1px solid black;
+}
