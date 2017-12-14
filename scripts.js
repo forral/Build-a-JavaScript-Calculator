@@ -58,7 +58,9 @@ function clickHandles(e) {
 
     } else {
       currentValue = screen.textContent;
+      cleanHighlightButton();
       currentOperation = this.dataset.value;
+      this.classList.add('selected');
 
       operation.push(currentValue);
       currentValue = '';
@@ -98,6 +100,7 @@ function clickHandles(e) {
       lastOp = [];
     }
 
+    cleanHighlightButton();
     operation = [];
   }
 
@@ -119,11 +122,13 @@ function clickHandles(e) {
 
     if (operation.length > 0 && currentOperation !== '') {
       currentOperation = '';
+      cleanHighlightButton();
     }
 
     if (currentValue !== '' && screen.textContent !== '0') {
       currentValue = '';
       screen.textContent = '0';
+      cleanHighlightButton();
     }
   }
 }
@@ -137,6 +142,7 @@ function allClear() {
   operation = [];
   currentValue = '';
   currentOperation = '';
+  cleanHighlightButton();
   lastOp = [];
 }
 
