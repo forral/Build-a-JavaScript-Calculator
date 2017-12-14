@@ -39,6 +39,10 @@ function clickHandles(e) {
       // If the screen has the result of an operation and the next button clickes it´s a number,
       // then clean the screen and had the value of the clicked button.
       screen.textContent = this.dataset.value;
+    } else if (screen.textContent.length > 18) {
+      // if the screen number it's bigger than 18 characteres, use Exponetial
+      // TODO: i'm not happy with this solution, see how google calendar deals with this situation.
+      screen.textContent = Number(screen.textContent).toExponential();
     } else {
       // show the clicked button value into the .screen.
       screen.textContent += this.dataset.value;
