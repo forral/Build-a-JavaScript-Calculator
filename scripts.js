@@ -69,7 +69,6 @@ function clickHandles(e) {
 
   // ------> RESULT
   if (this.dataset.value === '=') {
-
     currentValue = screen.textContent;
 
     if (operation.length === 0 && lastOp) {
@@ -111,7 +110,6 @@ function clickHandles(e) {
 
   // ------> CE
   if (this.dataset.value === 'CE') {
-
     if (currentValue === '' && currentOperation === '') {
       if (screen.textContent === '0') {
         operation.pop();
