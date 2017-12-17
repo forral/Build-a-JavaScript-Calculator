@@ -69,12 +69,17 @@ function clickHandles(e) {
 
   // ------> RESULT
   if (this.dataset.value === '=') {
-    currentValue = screen.textContent;
+
+    if (operation.length === 1 && currentOperation) {
+      operation.unshift(0, currentOperation);
+    } else {
+      currentValue = screen.textContent;
+    }
 
     if (operation.length === 0 && lastOp) {
       operation.push(currentValue);
       operation = operation.concat(lastOp);
-    } else {
+    } else if (currentValue !== '') {
       operation.push(currentValue);
     }
 
