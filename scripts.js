@@ -146,13 +146,13 @@ document.addEventListener('keyup', function(e) {
   // 1. identify the key pressed ==> log some text.
   
   // AC
-  // if (e.keyCode === 27) {
-  //   console.log('ESCAPE Key Pressed, run clearAll Function');
-  // }
+  if (e.keyCode === 27) {
+    console.log('ESCAPE Key Pressed, run clearAll Function');
+  }
 
   // Number (48 - 57)
-  if (e.keyCode ) {
-    
+  if (e.keyCode > 47 && e.keyCode < 58) {
+    console.log(e.keyCode + ' numb pad keys pressed, run numberValue Function');
   }
 
   // Math Operation
