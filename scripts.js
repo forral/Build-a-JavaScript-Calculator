@@ -1,5 +1,6 @@
 var screen = document.querySelector('.screen');
 var keyboard = document.querySelectorAll('.keyboard button');
+keyboard = [...keyboard];
 
 // Init.
 screen.textContent = '0';
@@ -51,61 +52,12 @@ function clickHandles(e) {
 
   // ------> MATH OPERATION
   if (this.dataset.type === 'mathOperation') {
-    if (currentOperation) {
-      cleanHighlightButton();
-      currentOperation = this.dataset.value;
-      this.classList.add('selected');
-
-    } else {
-      currentValue = screen.textContent;
-      cleanHighlightButton();
-      currentOperation = this.dataset.value;
-      this.classList.add('selected');
-
-      operation.push(currentValue);
-      currentValue = '';
-    }
+    mathOperationSelected(this.dataset.value);
   }
 
   // ------> RESULT
   if (this.dataset.value === '=') {
-
-    if (operation.length === 1 && currentOperation) {
-      operation.unshift(0, currentOperation);
-    } else {
-      currentValue = screen.textContent;
-    }
-
-    if (operation.length === 0 && lastOp) {
-      operation.push(currentValue);
-      operation = operation.concat(lastOp);
-    } else if (currentValue !== '') {
-      operation.push(currentValue);
-    }
-
-    currentValue = '';
-    currentOperation = '';
-
-    var result = (eval(operation.join(' ')));
-
-    // limit the result characters on screen.
-    if (result.toString().length > 18) {
-      result = result.toExponential();
-    }
-
-    screen.textContent = result;
-    currentValue = screen.textContent;
-
-    if (operation[operation.length - 2]) {
-      lastOp = [];
-      lastOp.push(operation[operation.length - 2]);
-      lastOp.push(operation[operation.length - 1]);
-    } else {
-      lastOp = [];
-    }
-
-    cleanHighlightButton();
-    operation = [];
+    getResult();
   }
 
   // ------> AC
@@ -115,24 +67,7 @@ function clickHandles(e) {
 
   // ------> CE
   if (this.dataset.value === 'CE') {
-    if (currentValue === '' && currentOperation === '') {
-      if (screen.textContent === '0') {
-        operation.pop();
-      } else {
-        screen.textContent = '0';
-      }
-    }
-
-    if (operation.length > 0 && currentOperation !== '') {
-      currentOperation = '';
-      cleanHighlightButton();
-    }
-
-    if (currentValue !== '' && screen.textContent !== '0') {
-      currentValue = '';
-      screen.textContent = '0';
-      cleanHighlightButton();
-    }
+    clearEntry();
   }
 }
 
@@ -141,10 +76,6 @@ keyboard.forEach(button => {
 });
 
 document.addEventListener('keyup', function(e) {
-
-  // console.log(e);
-  // 1. identify the key pressed ==> log some text.
-  
   // AC
   if (e.keyCode === 27) {
     console.log('ESCAPE Key Pressed, run clearAll Function');
@@ -155,9 +86,17 @@ document.addEventListener('keyup', function(e) {
     console.log(e.keyCode + ' numb pad keys pressed, run numberValue Function');
   }
 
-  // Math Operation
+  // Math Operation (/ 220, * 187, + -)
+  var mathSymbols = ['+', '/', '*', '-'];
+  if (mathSymbols.includes(e.key)) {
+    mathOperationSelected(e.key);
+  }
 
-  // CE
+  // Result Operation (=)
+  // TODO add the enter key functionality
+  if (e.key === '=') {
+    getResult();
+  }
 });
 
 function allClear() {
@@ -169,6 +108,94 @@ function allClear() {
   lastOp = [];
 }
 
+// TODO: not sure about the naming of this function
+function mathOperationSelected(selection) {
+  if (currentOperation) {
+    cleanHighlightButton();
+    currentOperation = selection;
+
+    // TODO: build own function for this:
+    var currentButton = keyboard.find(function(button) {
+      return button.dataset.value === selection;
+    });
+    currentButton.classList.add('selected');
+
+  } else {
+    currentValue = screen.textContent;
+    cleanHighlightButton();
+    currentOperation = selection; // <--
+
+    // TODO: build own function for this:
+    var currentButton = keyboard.find(function (button) {
+      return button.dataset.value === selection;
+    });
+    currentButton.classList.add('selected');
+
+    operation.push(currentValue);
+    currentValue = '';
+  }
+}
+
 function cleanHighlightButton() {
   keyboard.forEach((button) => button.classList.remove('selected'));
+}
+
+function getResult() {
+  if (operation.length === 1 && currentOperation) {
+    operation.unshift(0, currentOperation);
+  } else {
+    currentValue = screen.textContent;
+  }
+
+  if (operation.length === 0 && lastOp) {
+    operation.push(currentValue);
+    operation = operation.concat(lastOp);
+  } else if (currentValue !== '') {
+    operation.push(currentValue);
+  }
+
+  currentValue = '';
+  currentOperation = '';
+
+  var result = (eval(operation.join(' ')));
+
+  // limit the result characters on screen.
+  if (result.toString().length > 18) {
+    result = result.toExponential();
+  }
+
+  screen.textContent = result;
+  currentValue = screen.textContent;
+
+  if (operation[operation.length - 2]) {
+    lastOp = [];
+    lastOp.push(operation[operation.length - 2]);
+    lastOp.push(operation[operation.length - 1]);
+  } else {
+    lastOp = [];
+  }
+
+  cleanHighlightButton();
+  operation = [];
+}
+
+function clearEntry() {
+  if (currentValue === '' && currentOperation === '') {
+    if (screen.textContent === '0') {
+      operation.pop();
+    } else {
+      screen.textContent = '0';
+    }
+  }
+
+  if (operation.length > 0 && currentOperation !== '') {
+    currentOperation = '';
+    cleanHighlightButton();
+  }
+
+  if (currentValue !== '' && screen.textContent !== '0') {
+    currentValue = '';
+    screen.textContent = '0';
+    cleanHighlightButton();
+  }
 }
