@@ -141,9 +141,23 @@ keyboard.forEach(button => {
 });
 
 document.addEventListener('keyup', function(e) {
-  if (e.key === '1') {
-    console.log('scream');
+
+  // console.log(e);
+  // 1. identify the key pressed ==> log some text.
+  
+  // AC
+  // if (e.keyCode === 27) {
+  //   console.log('ESCAPE Key Pressed, run clearAll Function');
+  // }
+
+  // Number (48 - 57)
+  if (e.keyCode ) {
+    
   }
+
+  // Math Operation
+
+  // CE
 });
 
 function allClear() {
