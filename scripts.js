@@ -10,62 +10,22 @@ var currentOperation = '';
 var lastOp = [];
 
 function clickHandles(e) {
-
-  // ------> NUMBER
   if (this.dataset.type === 'number') {
-    if (currentOperation) {
-      operation.push(currentOperation);
-      currentOperation = '';
-      screen.textContent = '';
-    }
-
-    if (screen.textContent === '0') {
-      if (this.dataset.value === '.') {
-        // If the screen value it's 0 and the button pressed it's '.' the append it to the current value.
-        screen.textContent += this.dataset.value;
-      } else {
-      // If the current value in the ´.screen´ it's a 0, then clean it and insert the current pushed button value.
-      screen.textContent = this.dataset.value;
-      }
-    } else if (this.dataset.value === '.') {
-      if (screen.textContent.indexOf('.') > 0) {
-        // If there is allready a point in the screen, don't let show more.
-        screen.textContent = screen.textContent;
-      }
-      if (screen.textContent === '') {
-        // If the screen don't have any value and the button click is a point, then put an 0 before it.
-        screen.textContent = '0' + this.dataset.value;
-      }
-    } else if (screen.textContent === currentValue) {
-      // If the screen has the result of an operation and the next button clickes it´s a number,
-      // then clean the screen and had the value of the clicked button.
-      screen.textContent = this.dataset.value;
-    } else if (screen.textContent.length > 18) {
-      // if the screen number it's bigger than 18 characteres, use Exponetial
-      // TODO: i'm not happy with this solution, see how google calculator deals with this situation.
-      screen.textContent = Number(screen.textContent).toExponential();
-    } else {
-      // show the clicked button value into the .screen.
-      screen.textContent += this.dataset.value;
-    }
+    numberSelected(this.dataset.value);
   }
 
-  // ------> MATH OPERATION
   if (this.dataset.type === 'mathOperation') {
     mathOperationSelected(this.dataset.value);
   }
 
-  // ------> RESULT
   if (this.dataset.value === '=') {
     getResult();
   }
 
-  // ------> AC
   if (this.dataset.value === 'AC') {
     allClear();
   }
 
-  // ------> CE
   if (this.dataset.value === 'CE') {
     clearEntry();
   }
@@ -75,15 +35,15 @@ keyboard.forEach(button => {
   button.addEventListener('click', clickHandles);
 });
 
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keyup', function(e) {  
   // AC
   if (e.keyCode === 27) {
-    console.log('ESCAPE Key Pressed, run clearAll Function');
+    allClear();
   }
 
-  // Number (48 - 57)
-  if (e.keyCode > 47 && e.keyCode < 58) {
-    console.log(e.keyCode + ' numb pad keys pressed, run numberValue Function');
+  // Number (48 - 57 and .)
+  if ((e.keyCode > 47 && e.keyCode < 58) || e.keyCode === 190) {
+    numberSelected(e.key);
   }
 
   // Math Operation (/ 220, * 187, + -)
@@ -197,5 +157,43 @@ function clearEntry() {
     currentValue = '';
     screen.textContent = '0';
     cleanHighlightButton();
+  }
+}
+
+function numberSelected(selection) {
+  if (currentOperation) {
+    operation.push(currentOperation);
+    currentOperation = '';
+    screen.textContent = '';
+  }
+
+  if (screen.textContent === '0') {
+    if (selection === '.') { // <-- HERE!
+      // If the screen value it's 0 and the button pressed it's '.' the append it to the current value.
+      screen.textContent += selection; // <-- HERE!
+    } else {
+      // If the current value in the ´.screen´ it's a 0, then clean it and insert the current pushed button value.
+      screen.textContent = selection; // <-- HERE!
+    }
+  } else if (selection === '.') { // <-- HERE!
+    if (screen.textContent.indexOf('.') > 0) {
+      // If there is allready a point in the screen, don't let show more.
+      screen.textContent = screen.textContent;
+    }
+    if (screen.textContent === '') {
+      // If the screen don't have any value and the button click is a point, then put an 0 before it.
+      screen.textContent = '0' + selection; // <-- HERE!
+    }
+  } else if (screen.textContent === currentValue) {
+    // If the screen has the result of an operation and the next button clickes it´s a number,
+    // then clean the screen and had the value of the clicked button.
+    screen.textContent = selection; // <-- HERE!
+  } else if (screen.textContent.length > 18) {
+    // if the screen number it's bigger than 18 characteres, use Exponetial
+    // TODO: i'm not happy with this solution, see how google calculator deals with this situation.
+    screen.textContent = Number(screen.textContent).toExponential();
+  } else {
+    // show the clicked button value into the .screen.
+    screen.textContent += selection; // <-- HERE!
   }
 }
