@@ -41,7 +41,7 @@ function clickHandles(e) {
       screen.textContent = this.dataset.value;
     } else if (screen.textContent.length > 18) {
       // if the screen number it's bigger than 18 characteres, use Exponetial
-      // TODO: i'm not happy with this solution, see how google calendar deals with this situation.
+      // TODO: i'm not happy with this solution, see how google calculator deals with this situation.
       screen.textContent = Number(screen.textContent).toExponential();
     } else {
       // show the clicked button value into the .screen.
@@ -138,6 +138,12 @@ function clickHandles(e) {
 
 keyboard.forEach(button => {
   button.addEventListener('click', clickHandles);
+});
+
+document.addEventListener('keyup', function(e) {
+  if (e.key === '1') {
+    console.log('scream');
+  }
 });
 
 function allClear() {
