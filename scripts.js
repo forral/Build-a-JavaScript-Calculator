@@ -2,14 +2,14 @@ var screen = document.querySelector('.screen');
 var keyboard = document.querySelectorAll('.keyboard button');
 keyboard = [...keyboard];
 
-// Init.
+// Init
 screen.textContent = '0';
 var operation = [];
 var currentValue = '';
 var currentOperation = '';
 var lastOp = [];
 
-function clickHandles(e) {
+function clickHandle(e) {
   if (this.dataset.type === 'number') {
     numberSelected(this.dataset.value);
   }
@@ -31,15 +31,7 @@ function clickHandles(e) {
   }
 }
 
-keyboard.forEach(button => {
-  button.addEventListener('click', clickHandles);
-});
-
-document.addEventListener('keyup', function(e) {  
-  
-  console.log(e.keyCode);
-  
-
+function keyPressedHandle(e) {
   // AC
   if (e.keyCode === 27) {
     allClear();
@@ -57,12 +49,17 @@ document.addEventListener('keyup', function(e) {
   }
 
   // Result Operation (=)
-  // TODO add the enter key functionality
   if (e.key === '=' || e.keyCode === 13) {
     e.preventDefault();
     getResult();
   }
+}
+
+keyboard.forEach(button => {
+  button.addEventListener('click', clickHandle);
 });
+
+document.addEventListener('keyup', keyPressedHandle);
 
 function allClear() {
   screen.textContent = '0';
@@ -78,24 +75,13 @@ function mathOperationSelected(selection) {
   if (currentOperation) {
     cleanHighlightButton();
     currentOperation = selection;
-
-    // TODO: build own function for this:
-    var currentButton = keyboard.find(function(button) {
-      return button.dataset.value === selection;
-    });
-    currentButton.classList.add('selected');
+    addHighlightButton(selection);
 
   } else {
     currentValue = screen.textContent;
     cleanHighlightButton();
-    currentOperation = selection; // <--
-
-    // TODO: build own function for this:
-    var currentButton = keyboard.find(function (button) {
-      return button.dataset.value === selection;
-    });
-    currentButton.classList.add('selected');
-
+    currentOperation = selection;
+    addHighlightButton(selection);
     operation.push(currentValue);
     currentValue = '';
   }
@@ -103,6 +89,13 @@ function mathOperationSelected(selection) {
 
 function cleanHighlightButton() {
   keyboard.forEach((button) => button.classList.remove('selected'));
+}
+
+function addHighlightButton(selection) {
+  var currentButton = keyboard.find(function (button) {
+    return button.dataset.value === selection;
+  });
+  currentButton.classList.add('selected');
 }
 
 function getResult() {
