@@ -173,32 +173,34 @@ function numberSelected(selection) {
   }
 
   if (screen.textContent === '0') {
-    if (selection === '.') { // <-- HERE!
+    if (selection === '.') {
       // If the screen value it's 0 and the button pressed it's '.' the append it to the current value.
-      screen.textContent += selection; // <-- HERE!
+      screen.textContent += selection;
     } else {
       // If the current value in the ´.screen´ it's a 0, then clean it and insert the current pushed button value.
-      screen.textContent = selection; // <-- HERE!
+      screen.textContent = selection;
     }
-  } else if (selection === '.') { // <-- HERE!
+  } else if (selection === '.') {
     if (screen.textContent.indexOf('.') > 0) {
       // If there is allready a point in the screen, don't let show more.
       screen.textContent = screen.textContent;
     }
-    if (screen.textContent === '') {
+    else if (screen.textContent === '') {
       // If the screen don't have any value and the button click is a point, then put an 0 before it.
-      screen.textContent = '0' + selection; // <-- HERE!
+      screen.textContent = '0' + selection;
+    } else {
+      screen.textContent += selection;
     }
   } else if (screen.textContent === currentValue) {
     // If the screen has the result of an operation and the next button clickes it´s a number,
     // then clean the screen and had the value of the clicked button.
-    screen.textContent = selection; // <-- HERE!
+    screen.textContent = selection;
   } else if (screen.textContent.length > 18) {
     // if the screen number it's bigger than 18 characteres, use Exponetial
     // TODO: i'm not happy with this solution, see how google calculator deals with this situation.
     screen.textContent = Number(screen.textContent).toExponential();
   } else {
     // show the clicked button value into the .screen.
-    screen.textContent += selection; // <-- HERE!
+    screen.textContent += selection;
   }
 }
