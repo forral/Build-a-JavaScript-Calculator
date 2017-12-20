@@ -32,6 +32,10 @@ button {
   margin: 5px;
 }
 
+button:focus {
+    outline: none;
+}
+
 .zero-btn {
   width: 90px;
 }
