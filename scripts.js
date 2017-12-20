@@ -58,7 +58,8 @@ document.addEventListener('keyup', function(e) {
 
   // Result Operation (=)
   // TODO add the enter key functionality
-  if (e.key === '=') {
+  if (e.key === '=' || e.keyCode === 13) {
+    e.preventDefault();
     getResult();
   }
 });
