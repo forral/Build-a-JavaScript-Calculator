@@ -148,6 +148,7 @@ function clearEntry() {
 
   if (operation.length > 0 && currentOperation !== '') {
     currentOperation = '';
+    operation.pop();
     cleanHighlightButton();
   }
 
