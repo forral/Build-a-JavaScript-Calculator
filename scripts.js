@@ -36,13 +36,17 @@ keyboard.forEach(button => {
 });
 
 document.addEventListener('keyup', function(e) {  
+  
+  console.log(e.keyCode);
+  
+
   // AC
   if (e.keyCode === 27) {
     allClear();
   }
 
   // Number (48 - 57 and .)
-  if ((e.keyCode > 47 && e.keyCode < 58) || e.keyCode === 190) {
+  if ((e.keyCode > 48 && e.keyCode < 58) || e.keyCode === 190) {
     numberSelected(e.key);
   }
 
