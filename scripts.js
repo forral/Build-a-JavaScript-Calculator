@@ -2,7 +2,6 @@ var screen = document.querySelector('.screen');
 var keyboard = document.querySelectorAll('.keyboard button');
 keyboard = [...keyboard];
 
-// Init
 screen.textContent = '0';
 var operation = [];
 var currentValue = '';
@@ -118,7 +117,7 @@ function getResult() {
   var result = (eval(operation.join(' ')));
 
   // limit the result characters on screen.
-  if (result.toString().length > 18) {
+  if (result.toString().length > 19) {
     result = result.toExponential();
   }
 
@@ -192,7 +191,8 @@ function numberSelected(selection) {
   } else if (screen.textContent.length > 18) {
     // if the screen number it's bigger than 18 characteres, use Exponetial
     // TODO: i'm not happy with this solution, see how google calculator deals with this situation.
-    screen.textContent = Number(screen.textContent).toExponential();
+    // screen.textContent = Number(screen.textContent).toExponential();
+    screen.textContent = 'DIGIT LIMIT MET';
   } else {
     // show the clicked button value into the .screen.
     screen.textContent += selection;
