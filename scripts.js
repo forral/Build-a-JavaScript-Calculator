@@ -9,6 +9,10 @@ var currentOperation = '';
 var lastOp = [];
 
 function clickHandle(e) {
+  if (screen.textContent === 'DIGIT LIMIT MET') {
+    screen.textContent = '0';
+  }
+
   if (this.dataset.type === 'number') {
     numberSelected(this.dataset.value);
   }
@@ -31,6 +35,10 @@ function clickHandle(e) {
 }
 
 function keyPressedHandle(e) {
+  if (screen.textContent === 'DIGIT LIMIT MET') {
+    screen.textContent = '0';
+  }
+
   // AC
   if (e.keyCode === 27) {
     allClear();
@@ -120,7 +128,10 @@ function getResult() {
   // (result + '') it´s for converting the result into an string 
   if ((result + '').length > 18) {
     // result = result.toExponential();
-    digitLimitMet()
+    digitLimitMet();
+
+
+
   } else {
     screen.textContent = result;
     currentValue = screen.textContent;
@@ -194,7 +205,7 @@ function numberSelected(selection) {
     // if the screen number it's bigger than 18 characteres, use Exponetial
     // TODO: i'm not happy with this solution, see how google calculator deals with this situation.
     // screen.textContent = Number(screen.textContent).toExponential();
-    digitLimitMet()
+    digitLimitMet();
   } else {
     // show the clicked button value into the .screen.
     screen.textContent += selection;
