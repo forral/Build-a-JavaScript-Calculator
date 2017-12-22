@@ -117,10 +117,10 @@ function getResult() {
   var result = (eval(operation.join(' ')));
 
   // limit the result characters on screen.
-  if ((result + '').length > 2) {
+  // (result + '') it´s for converting the result into an string 
+  if ((result + '').length > 18) {
     // result = result.toExponential();
-    screen.textContent = 'DIGIT LIMIT MET';
-    currentValue = '';
+    digitLimitMet()
   } else {
     screen.textContent = result;
     currentValue = screen.textContent;
@@ -194,9 +194,17 @@ function numberSelected(selection) {
     // if the screen number it's bigger than 18 characteres, use Exponetial
     // TODO: i'm not happy with this solution, see how google calculator deals with this situation.
     // screen.textContent = Number(screen.textContent).toExponential();
-    screen.textContent = 'DIGIT LIMIT MET';
+    digitLimitMet()
   } else {
     // show the clicked button value into the .screen.
     screen.textContent += selection;
   }
+}
+
+function digitLimitMet() {
+  screen.textContent = 'DIGIT LIMIT MET';
+  operation = [];
+  currentOperation = '';
+  currentValue = '';
+  lastOp = [];
 }
