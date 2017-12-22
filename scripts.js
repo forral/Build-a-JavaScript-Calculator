@@ -117,12 +117,14 @@ function getResult() {
   var result = (eval(operation.join(' ')));
 
   // limit the result characters on screen.
-  if (result.toString().length > 19) {
-    result = result.toExponential();
+  if ((result + '').length > 2) {
+    // result = result.toExponential();
+    screen.textContent = 'DIGIT LIMIT MET';
+    currentValue = '';
+  } else {
+    screen.textContent = result;
+    currentValue = screen.textContent;
   }
-
-  screen.textContent = result;
-  currentValue = screen.textContent;
 
   if (operation[operation.length - 2]) {
     lastOp = [];
