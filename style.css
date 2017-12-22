@@ -11,7 +11,7 @@ html {
 }
 
 .screen {
-  margin: 0 auto 0 auto;
+  margin: 0 auto 5px auto;
   border: 1px solid lightgray;
   width: 197px;
   height: 40px;
@@ -34,21 +34,6 @@ button {
 
 button:focus {
     outline: none;
-}
-
-.zero-btn {
-  width: 90px;
-}
-
-.equal-btn {
-  height: 90px;
-  position: absolute;
-  margin-left: -43px;
-  margin-top: -45px;
-}
-
-.invisible {
-  visibility: hidden;
 }
 
 .selected {
