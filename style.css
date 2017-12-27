@@ -10,7 +10,7 @@ html {
   padding: 30px 0;
 }
 
-.screen {
+.screen, .mini-screen {
   margin: 0 auto 5px auto;
   border: 1px solid lightgray;
   width: 197px;

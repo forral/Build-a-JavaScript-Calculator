@@ -1,4 +1,5 @@
 var screen = document.querySelector('.screen');
+var miniScreen = document.querySelector('.mini-screen');
 var keyboard = document.querySelectorAll('.keyboard button');
 keyboard = [...keyboard];
 
@@ -159,6 +160,7 @@ function getResult() {
   }
 
   cleanHighlightButton();
+  miniScreen.textContent = formatMiniScreen(operation.join());
   operation = [];
 }
 
@@ -251,4 +253,10 @@ function backSpace() {
   if (screen.textContent === '') {
     screen.textContent = '0';
   }
+}
+
+function formatMiniScreen(stringOperation) {
+  return stringOperation.replace(/\*/g, 'x')
+                        .replace(/,/g, ' ')
+                        + ' =';
 }
