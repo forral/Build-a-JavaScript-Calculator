@@ -36,6 +36,10 @@ function clickHandle(e) {
   if (this.id === 'toggle-neg') {
     toggleNegative();
   }
+
+  if (this.id === 'back-space') {
+    backSpace();
+  }
 }
 
 function keyPressedHandle(e) {
@@ -43,6 +47,11 @@ function keyPressedHandle(e) {
     screen.textContent = '0';
   }
 
+  // backspace
+  if (e.keyCode === 8) {
+    backSpace();
+  }
+  
   // AC
   if (e.keyCode === 27) {
     allClear();
@@ -233,5 +242,13 @@ function toggleNegative() {
     screen.textContent = screen.textContent.replace(/-/, '');
   } else {
     screen.textContent = '-' + screen.textContent;
+  }
+}
+
+function backSpace() {
+  screen.textContent = screen.textContent.slice(0, screen.textContent.length - 1);
+
+  if (screen.textContent === '') {
+    screen.textContent = '0';
   }
 }
