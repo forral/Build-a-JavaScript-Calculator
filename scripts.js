@@ -32,6 +32,10 @@ function clickHandle(e) {
   if (this.dataset.value === 'CE') {
     clearEntry();
   }
+
+  if (this.id === 'toggle-neg') {
+    toggleNegative();
+  }
 }
 
 function keyPressedHandle(e) {
@@ -218,4 +222,16 @@ function digitLimitMet() {
   currentOperation = '';
   currentValue = '';
   lastOp = [];
+}
+
+function toggleNegative() {
+  if (screen.textContent === '0') {
+    return;
+  }
+  
+  if (screen.textContent.includes('-')) {
+    screen.textContent = screen.textContent.replace(/-/, '');
+  } else {
+    screen.textContent = '-' + screen.textContent;
+  }
 }
