@@ -147,8 +147,6 @@ function getResult() {
     // result = result.toExponential();
     digitLimitMet();
 
-
-
   } else {
     screen.textContent = result;
     currentValue = screen.textContent;
