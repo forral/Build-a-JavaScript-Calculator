@@ -260,6 +260,6 @@ function formatMiniScreen(stringOperation) {
   return stringOperation.join()
                         .replace(/\*/g, 'x')
                         .replace(/,/g, ' ')
-                        .replace(/\//g, '&divide;')
+                        .replace(/\//g, '\u00F7')
                         + ' =';
 }
