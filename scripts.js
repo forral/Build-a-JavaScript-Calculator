@@ -84,6 +84,7 @@ document.addEventListener('keyup', keyPressedHandle);
 
 function allClear() {
   screen.textContent = '0';
+  miniScreen.textContent = '';
   operation = [];
   currentValue = '';
   currentOperation = '';
@@ -160,7 +161,7 @@ function getResult() {
   }
 
   cleanHighlightButton();
-  miniScreen.textContent = formatMiniScreen(operation.join());
+  miniScreen.textContent = formatMiniScreen(operation);
   operation = [];
 }
 
@@ -256,7 +257,9 @@ function backSpace() {
 }
 
 function formatMiniScreen(stringOperation) {
-  return stringOperation.replace(/\*/g, 'x')
+  return stringOperation.join()
+                        .replace(/\*/g, 'x')
                         .replace(/,/g, ' ')
+                        .replace(/\//g, '&divide;')
                         + ' =';
 }
