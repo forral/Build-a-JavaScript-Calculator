@@ -44,6 +44,8 @@ function clickHandle(e) {
 }
 
 function keyPressedHandle(e) {
+  console.log(e);
+  
   if (screen.textContent === 'DIGIT LIMIT MET') {
     screen.textContent = '0';
   }
@@ -59,7 +61,7 @@ function keyPressedHandle(e) {
   }
 
   // Number (48 - 57 and .)
-  if (((e.keyCode > 48 && e.keyCode < 58) || e.keyCode === 190) && !e.shiftKey) {
+  if (((e.keyCode > 47 && e.keyCode < 58) || e.keyCode === 190) && !e.shiftKey) {
     numberSelected(e.key);
   }
 
