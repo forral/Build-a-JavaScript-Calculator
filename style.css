@@ -15,11 +15,19 @@ html {
   border: 1px solid lightgray;
   width: 197px;
   height: 40px;
-  font-size: 20px;
   text-align: right;
-  color: lightgray;
   line-height: 40px;
   padding-right: 5px;
+}
+
+.mini-screen {
+  color: lightgrey;
+  font-size: 15px;
+}
+
+.screen {
+  color: black;
+  font-size: 45px;
 }
 
 input:focus {

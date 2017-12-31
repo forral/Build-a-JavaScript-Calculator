@@ -254,7 +254,7 @@ function backSpace() {
 function formatMiniScreen(stringOperation) {
   return stringOperation.join()
                         .replace(/\*/g, 'x')
-                        .replace(/,/g, ' ')
+                        .replace(/,/g, '')
                         .replace(/\//g, '\u00F7')
-                        + ' =';
+                        + '=';
 }
