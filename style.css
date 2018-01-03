@@ -1,3 +1,24 @@
+/*
+ ========================================
+  Clearfix
+  ========================================
+*/
+.group:before,
+.group:after {
+  content: "";
+  display: table;
+}
+
+.group:after {
+  clear: both;
+}
+
+.group {
+  clear: both;
+  *zoom: 1;
+}
+/* end of Clearfix */
+
 html {
   background: grey;
 }
@@ -9,6 +30,19 @@ html {
   margin: 50px auto 0 auto;
   text-align: center;
   border-radius: 30px;
+}
+
+.menu-bar {
+  padding: 30px 15px;
+  font-size: 20px;
+}
+
+.fa-bars {
+  float: left;
+}
+
+.fa-undo {
+  float: right;
 }
 
 .screen, .mini-screen {
@@ -28,7 +62,7 @@ html {
 .screen {
   color: black;
   font-size: 45px;
-  margin-bottom: 240px;
+  margin-bottom: 170px;
   height: 40px;
 }
 
