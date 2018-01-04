@@ -35,6 +35,10 @@ html {
   border: 10px solid black;
 }
 
+.wrapper {
+  margin: 0 40px 130px 40px;
+}
+
 .menu-bar {
   margin: 30px 0;
   font-size: 20px;
@@ -61,7 +65,6 @@ html {
 
 .screen {
   font-size: 80px;
-  margin-bottom: 130px;
   height: 75px;
   line-height: 70px;
 }
