@@ -20,7 +20,7 @@
 /* end of Clearfix */
 
 html {
-  background:   #f5f5f5;;
+  background: #f5f5f5;;
 }
 
 #app {
@@ -36,7 +36,7 @@ html {
 }
 
 .menu-bar {
-  padding: 30px 15px;
+  margin: 30px 0;
   font-size: 20px;
 }
 
@@ -50,7 +50,6 @@ html {
 
 .screen, .mini-screen {
   margin: 0 auto;
-  width: 350px;;
   text-align: right;
 }
 
@@ -101,16 +100,13 @@ button:focus {
 
 footer {
   text-align: center;
-  width: 100%;
-  height: 20px;
   margin: 50px auto 0 auto;
   color: #bfbfbf;
   font-size: 10px;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  text-align: center;
-  font-weight: 100;
+  font-weight: 300;
+  font-family: 'Helvetica Neue';
 }
 
 footer spam {
-  font-weight: 900;
+  font-weight: 600;
 }
