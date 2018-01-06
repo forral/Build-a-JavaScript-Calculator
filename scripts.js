@@ -139,6 +139,7 @@ function getResult() {
   currentOperation = '';
 
   var result = (eval(operation.join(' ')));
+  result = accounting.formatMoney(result, '', 2, '\'', '.');
 
   // limit the result characters on screen.
   // (result + '') it´s for converting the result into an string 
