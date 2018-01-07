@@ -126,7 +126,7 @@ function getResult() {
   if (operation.length === 1 && currentOperation) {
     operation.unshift(0, currentOperation);
   } else {
-    currentValue = screen.textContent;
+    currentValue = accounting.unformat(screen.textContent);
   }
 
   if (operation.length === 0 && lastOp) {
