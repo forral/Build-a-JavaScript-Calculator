@@ -91,6 +91,7 @@ function allClear() {
   currentOperation = '';
   cleanHighlightButton();
   lastOp = [];
+  resizeFont(screen.textContent.length);
 }
 
 // TODO: not sure about the naming of this function
@@ -162,6 +163,8 @@ function getResult() {
   cleanHighlightButton();
   miniScreen.textContent = formatMiniScreen(operation);
   operation = [];
+
+  resizeFont(screen.textContent.length);
 }
 
 function clearEntry() {
@@ -184,6 +187,8 @@ function clearEntry() {
     screen.textContent = '0';
     cleanHighlightButton();
   }
+
+  resizeFont(screen.textContent.length);
 }
 
 function numberSelected(selection) {
@@ -216,12 +221,14 @@ function numberSelected(selection) {
     // If the screen has the result of an operation and the next button clickes it´s a number,
     // then clean the screen and had the value of the clicked button.
     screen.textContent = selection;
-  } else if (screen.textContent.length > 18) {
+  } else if (screen.textContent.length > 15) {
     digitLimitMet();
   } else {
     // show the clicked button value into the .screen.
     screen.textContent += selection;
   }
+
+  resizeFont(screen.textContent.length);
 }
 
 function digitLimitMet() {
@@ -246,10 +253,10 @@ function toggleNegative() {
 
 function backSpace() {
   screen.textContent = screen.textContent.slice(0, screen.textContent.length - 1);
-
   if (screen.textContent === '') {
     screen.textContent = '0';
   }
+  resizeFont(screen.textContent.length);
 }
 
 function formatMiniScreen(stringOperation) {
@@ -258,4 +265,14 @@ function formatMiniScreen(stringOperation) {
                         .replace(/,/g, '')
                         .replace(/\//g, '\u00F7')
                         + '=';
+}
+
+function resizeFont(screenLength) {
+  if (screenLength > 6 && screenLength < 10) {
+    screen.style.fontSize = '50px';
+  } else if (screenLength >= 10) {
+    screen.style.fontSize = '30px';
+  } else {
+    screen.style.fontSize = '80px';
+  }
 }
