@@ -106,7 +106,7 @@ function mathOperationSelected(selection) {
     cleanHighlightButton();
     currentOperation = selection;
     addHighlightButton(selection);
-    operation.push(currentValue);
+    operation.push(accounting.unformat(currentValue));
     currentValue = '';
   }
 }
@@ -130,10 +130,10 @@ function getResult() {
   }
 
   if (operation.length === 0 && lastOp) {
-    operation.push(currentValue);
+    operation.push(accounting.unformat(currentValue));
     operation = operation.concat(lastOp);
   } else if (currentValue !== '') {
-    operation.push(currentValue);
+    operation.push(accounting.unformat(currentValue));
   }
 
   currentValue = '';
@@ -148,7 +148,7 @@ function getResult() {
 
   } else {
     screen.textContent = result % 1 === 0 ? result = accounting.formatNumber(result, 0, '\'', '.') : accounting.formatNumber(result, 2, '\'', '.');
-    currentValue = screen.textContent;
+    currentValue = accounting.unformat(screen.textContent);
   }
 
   if (operation[operation.length - 2]) {
