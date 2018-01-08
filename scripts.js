@@ -140,7 +140,6 @@ function getResult() {
   currentOperation = '';
 
   var result = (eval(operation.join(' ')));
-  result = accounting.formatMoney(result, '', 2, '\'', '.');
 
   // limit the result characters on screen.
   // (result + '') it´s for converting the result into an string 
@@ -148,7 +147,7 @@ function getResult() {
     digitLimitMet();
 
   } else {
-    screen.textContent = result;
+    screen.textContent = result % 1 === 0 ? result = accounting.formatNumber(result, 0, '\'', '.') : accounting.formatNumber(result, 2, '\'', '.');
     currentValue = screen.textContent;
   }
 
