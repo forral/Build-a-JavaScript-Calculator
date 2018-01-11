@@ -112,6 +112,8 @@ footer {
   font-family: 'Helvetica Neue';
 }
 
-footer spam {
+footer a {
+  text-decoration: none;
+  color: inherit;
   font-weight: 600;
 }
